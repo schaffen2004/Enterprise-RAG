@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from .api.auth import router as auth_router
-from .model.user import Base
+from .model import Base
 from .utils.postgres import engine
 
 
