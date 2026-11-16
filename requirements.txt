@@ -6,3 +6,5 @@ pydantic-settings
 email-validator
 pyjwt
 bcrypt
+boto3
+python-multipart

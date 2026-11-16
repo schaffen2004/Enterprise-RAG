@@ -16,9 +16,16 @@ class Settings(BaseSettings):
     rag_db_user: str
     rag_db_password: str
 
+    aws_access_key_id: str
+    aws_secret_access_key: str
+    aws_region: str = "ap-southeast-1"
+    s3_bucket: str
+
     jwt_secret_key: str
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
+
+    max_upload_size_mb: int = 20
 
     app_host: str = "0.0.0.0"
     app_port: int = 8000
@@ -31,6 +38,10 @@ class Settings(BaseSettings):
             f"postgresql+psycopg2://{user}:{password}"
             f"@{self.rag_db_host}:{self.rag_db_port}/{self.rag_db_name}"
         )
+
+    @property
+    def max_upload_size_bytes(self) -> int:
+        return self.max_upload_size_mb * 1024 * 1024
 
 
 @lru_cache
