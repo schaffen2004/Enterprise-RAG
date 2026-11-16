@@ -27,7 +27,7 @@ class Document(Base):
         ForeignKey("users.id", ondelete="CASCADE"), index=True
     )
     name: Mapped[str] = mapped_column(String(255))
-    path: Mapped[str] = mapped_column(String(1024))
+    path: Mapped[str] = mapped_column(String(1024), unique=True)
     status: Mapped[DocumentStatus] = mapped_column(
         Enum(
             DocumentStatus,
